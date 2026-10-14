@@ -12,4 +12,9 @@ export class dexieService{
         console.log("EXECUTED SERVICE METHOD SUCCESS", result);
         console.log(await db.topics.toArray());
     }
+
+    async updateTopic(id: number){
+        const result = await db.topics.update(id, { last_visited_date: new Date().toISOString()});
+        console.log(await db.topics.toArray());
+    }
 }

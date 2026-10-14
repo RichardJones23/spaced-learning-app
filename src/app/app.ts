@@ -7,6 +7,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { from } from 'rxjs';
 import { DatePipe } from '@angular/common';
 import { FormTopic } from './form-topic/form-topic';
+import { dexieService } from './services/dexieService';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,7 @@ import { FormTopic } from './form-topic/form-topic';
 })
 export class App {
   protected readonly title = signal('spaced-learning');
+  constructor(private dexieService: dexieService) {}
 
   async ngOnInit(){
     await db.open();
@@ -34,5 +36,11 @@ export class App {
   selectedId = signal<number | null>(null);
   toggleButton(id: number){
     this.selectedId.update(current => current === id ? null : id);
+  }
+
+  visited(item: TopicInterface){
+    if(item.id!=null)
+    this.dexieService.updateTopic(item.id);
+    this.toggleButton(item.id);
   }
 }
