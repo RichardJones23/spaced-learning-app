@@ -22,8 +22,11 @@ export class FormTopic {
 
   addTopic(){
     console.log(this.form.value);
-    const date = ((this.form.value).date? new Date((this.form.value).date): new Date()).toISOString();
+    const formdate = ((this.form.value).date? new Date((this.form.value).date): new Date());
     const topic_name = (this.form.value).topic? (this.form.value).topic : " " ;
+    const now = new Date();
+    formdate.setHours(now.getHours(), now.getMinutes(), now.getSeconds());
+    const date = formdate.toISOString();
     const topicObj = new Topic(Array.length+1, topic_name, date, date);
     this.dexieService.addTopic(topicObj);
     this.form.reset();
