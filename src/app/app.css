@@ -1,0 +1,8 @@
+
+.topic-container:has(.done-btn){
+    margin-bottom: 0;
+}
+
+.topic-container{
+    margin-bottom: 0;
+}

@@ -30,4 +30,9 @@ export class App {
   getTopic(){
     console.log(this.resultTopics());
   }
+
+  selectedId = signal<number | null>(null);
+  toggleButton(id: number){
+    this.selectedId.update(current => current === id ? null : id);
+  }
 }

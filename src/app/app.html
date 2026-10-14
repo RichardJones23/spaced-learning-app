@@ -11,11 +11,17 @@
   @if(resultTopics().length!==0){
     <div class="topic min-w-3/4 min-h-12">
       @for (item of resultTopics(); track item) {
-        <div class="block bg-blue-600 min-w-1/2 min-h-12 transition duration-200ms ease-in-out 
-        hover:bg-blue-900 rounded-md px-4 py-2 my-4 text-white" >
+        <div class="topic-container block bg-blue-600 min-w-1/2 min-h-12 transition duration-200ms ease-in-out 
+        hover:bg-blue-900 rounded-md px-4 py-2 my-4 text-white" (click)="toggleButton(item.id)">
           <p class="font-bold text-lg">{{ item.topic}}</p>
           <p class="date text-sm font-mono">last visited on : {{ item.last_visited_date | date: 'medium'}}</p>
         </div>
+        @if (selectedId() === item.id ) {
+          <!-- <div class="done-btn bg-[#00c33a] max-w-1/4 min-h-8 text-white text-shadow-xs text-shadow-green-600" >REVISED</div> -->
+           <div class="flex">
+            <button class="bg-[#00c33a] ml-auto px-4 py-1 rounded-md font-medium tracking-wide text-white text-shadow-xs text-shadow-green-600">REVISED</button>
+           </div>
+        }
       } 
     </div>
   }
