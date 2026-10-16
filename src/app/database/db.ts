@@ -5,6 +5,8 @@ export interface TopicInterface{
     topic: string;
     created_date: string;
     last_visited_date: string;
+    completed_upto: number;
+    completed: false;
 }
 
 const db = new Dexie('SpacedLearningDB') as Dexie & {
